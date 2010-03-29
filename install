@@ -1,2 +1,5 @@
 #!/bin/bash
 sudo cp bin/* /usr/local/bin
+
+cd growlnotify
+sudo ./install.sh

@@ -56,7 +56,11 @@ if File.directory?("/Volumes/#{config[:backup_volume]}/MacVault")
   end
 
   $stderr <<  "[#{Time.now}] Backup Complete\n"
-  `say -v Trinoids "Backed up #{backups_count} location#{'s' if backups_count > 1}."` if backups_count > 0
+  if backups_count > 0
+    message = "Backed up #{backups_count} location#{'s' if backups_count > 1}."
+    `say -v Trinoids #{message}`
+    `growlnotify -m"#{message}"`
+  end
 else
   warn "[#{Time.now}] dry run\n"
 end
